@@ -1,0 +1,19 @@
+<!-- to compare and understand the difference between vanilla JS and React JS -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <script>
+            let counter = 0;
+            const button = document.getElementById("btn");
+            const span = document.querySelector("span");
+
+            function handleClick() {
+                counter = counter + 1;
+                span.innerText = `Total Click : ${counter}`;
+            }
+
+            button.addEventListener("click", handleClick);
+        </script>
+    </body>
+</html>

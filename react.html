@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script>
+        const root = document.getElementById("root");
+        const h3 = React.createElement(
+            "h3",
+            {
+                onMouseEnter: () => console.log("mouse enter"),
+            },
+            "Hello, I'm a h3"
+        );
+        const btn = React.createElement(
+            "button", 
+            {
+                onClick: () => console.log("I'm clicked"),  //eventListener 등록하는 것과 같음
+                style: {
+                    backgroundColor: "orange",
+                }
+            }, 
+            "Click me"
+        );
+        const container = React.createElement("div", null, [h3, btn]);
+        ReactDOM.render(container, root);
+    </script>
+</html> 
+
+
+
+
+
+
+<!-- to compare and understand the difference between vanilla JS and React JS -->
+<!-- 
+    Vanilla JS : HTML 먼저 만들고, Javascript로 가져와서 HTML 수정
+    React JS   : 모든 걸 Javascript에서 시작하고 HTML로 만듬
+        ===>>> 더 빠르고 간편하게
+-->
+
+<!--------------------------------------------------------------------------------------------------------------------------------- 
+///어렵고 지루한 방법.. 단지 vanilla JS와 비교해서 보여주기 위한 코드
+
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>              //like Engine.. this can help to make UI more interactively 
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>      //to place React elements in HTML 
+    <script>
+        const root = document.getElementById("root");
+        const span = React.createElement(
+            "span",
+            {id:"spanId", style:{color: "red"}},
+            "Hello, I'm a span"
+        );
+        ReactDOM.render(span, root);  //render() : React element들로 HTML로 만들어 배치.. show it to the user   //span을 root에 둔다
+    </script>
+</html> 
+
+-------------------------------------------------------------------------------------------------------------------------------->
+
+
