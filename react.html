@@ -1,3 +1,55 @@
+<!-- 
+    to compare and understand the difference between vanilla JS and React JS
+
+    Vanilla JS : HTML 먼저 만들고, Javascript로 가져와서 HTML 수정
+    React JS   : 모든 걸 Javascript에서 시작하고 HTML로 만듬
+        ===>>> 더 빠르고 간편하게
+
+    *Babel 활용 : 브라우저는 JSX를 몰라서, 이해할 수 있도록 Babel을 활용하여 자동으로 변환해서 전달
+-->
+
+<!-- using JSX -->
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        const Title = () => (
+            <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+                Hello I'm a title
+            </h3>
+        );
+        const Button = () => (  // () => function화 함.. Container에서 <Button />생성 후 사용       //
+            <button
+             style={{
+                    backgroundColor: "orange",
+                }} 
+                onClick={() => console.log("I'm clicked")}
+                >
+                Click me
+                </button>
+        );
+        const Container = () => (     //<Title /> <Button /> ... 꼭 첫 글자는 대문자! 소문자면 HTML로 읽음
+            <div>
+                <Title />
+                <Button />
+            </div>
+        );
+
+        ReactDOM.render(<Container />, root);
+    </script>
+</html>
+
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------- 
+///어렵고 지루한 방법.. 단지 vanilla JS와 비교해서 보여주기 위한 코드
+====================================================================================================================================
 <!DOCTYPE html>
 <html lang="en">
     <body>
@@ -28,22 +80,8 @@
         ReactDOM.render(container, root);
     </script>
 </html> 
-
-
-
-
-
-
-<!-- to compare and understand the difference between vanilla JS and React JS -->
-<!-- 
-    Vanilla JS : HTML 먼저 만들고, Javascript로 가져와서 HTML 수정
-    React JS   : 모든 걸 Javascript에서 시작하고 HTML로 만듬
-        ===>>> 더 빠르고 간편하게
--->
-
-<!--------------------------------------------------------------------------------------------------------------------------------- 
-///어렵고 지루한 방법.. 단지 vanilla JS와 비교해서 보여주기 위한 코드
-
+====================================================================================================================================
+====================================================================================================================================
 <!DOCTYPE html>
 <html lang="en">
     <body>
@@ -61,7 +99,7 @@
         ReactDOM.render(span, root);  //render() : React element들로 HTML로 만들어 배치.. show it to the user   //span을 root에 둔다
     </script>
 </html> 
-
+====================================================================================================================================
 -------------------------------------------------------------------------------------------------------------------------------->
 
 
