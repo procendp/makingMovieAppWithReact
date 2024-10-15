@@ -19,29 +19,22 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        const Title = () => (
-            <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-                Hello I'm a title
-            </h3>
-        );
-        const Button = () => (  // () => function화 함.. Container에서 <Button />생성 후 사용       //
-            <button
-             style={{
-                    backgroundColor: "orange",
-                }} 
-                onClick={() => console.log("I'm clicked")}
-                >
-                Click me
-                </button>
-        );
-        const Container = () => (     //<Title /> <Button /> ... 꼭 첫 글자는 대문자! 소문자면 HTML로 읽음
-            <div>
-                <Title />
-                <Button />
-            </div>
-        );
 
-        ReactDOM.render(<Container />, root);
+        function App() {     //<Title /> <Button /> ... 꼭 첫 글자는 대문자! 소문자면 HTML로 읽음
+            // const data = React.useState(0);  // React.useState(0) : [0, f] ... 0과 그 0값을 바꿀 수 있는 function 제공
+            const [counter, setCounter] = React.useState(0);  // arr[0] = counter, arr[1] = setCounter      // useState(0) : set default -> 0
+            const onClick = () => {
+                // setCounter(counter + 1);    // 1. 직접 값 설정 : 클릭하면 setCounter()에서 매개변수로 받은 것처럼 갱신해서 표현하고 넘겨줌(상수 넣으면 상수만 계속 표현), 그리고 rerendering할 때, HTML 중 얽혀있는 div 같은 요소들은 제외하고 매개변수만 rerendering하여 성능에도 좋음 -> React 장점
+                setCounter((current) => current + 1);    // 2. 함수 전달 : 항상 현재 state를 얻게 해줌, *더 안정적인 방법
+            };
+            return (
+            <div>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
+            );
+        }
+        ReactDOM.render(<App />, root);
     </script>
 </html>
 
