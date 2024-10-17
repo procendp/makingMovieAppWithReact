@@ -3,12 +3,52 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
+    function Btn({ btnText, onClickToChange, fontSize }) {
+      return (
+        <button
+          onClick={onClickToChange}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,
+          }}
+        >
+          {btnText}
+        </button>
+      );
+    }
+    const MemorizedBtn = React.memo(Btn); // React.memo : Continue 버튼 같은 경우, 재클릭 시 re-render할 게 없기 때문에 하지 않도록 도와줌 (기억하고 있음, 성능에도 좋음)
+
+    MemorizedBtn.propTypes = {
+      // .propTypes : type이 올바른지 web 내 console에서 확인해줌, 하지만 react source가 development 버전이어야 함.
+      btnText: PropTypes.string,
+      fontSize: PropTypes.number,
+    };
+
     function App() {
-      <div></div>;
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          <MemorizedBtn
+            btnText={value}
+            onClickToChange={changeValue}
+            fontSize={18}
+          />
+          <span> </span>
+          <span> </span>
+          <span> </span>
+          <MemorizedBtn btnText={"Continue"} fontSize={15} />
+        </div>
+      );
     }
 
     const root = document.getElementById("root");
